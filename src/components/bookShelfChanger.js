@@ -1,8 +1,9 @@
-import propTypes from "prop-types";
 import React, { useState } from "react";
+import propTypes from "prop-types";
 
 const BookShelfChanger = ({ book, onChangeShelf }) => {
   const [shelfValue, setShelfValue] = useState(book.shelf);
+
   const changeShelf = (e) => {
     console.log("e.target.value", e.target.value);
     setShelfValue(e.target.value);

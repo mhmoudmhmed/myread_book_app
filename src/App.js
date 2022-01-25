@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import * as API from "./BooksAPI";
 import "./App.css";
 import BookShilf from "./components/bookShelf";
@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [allbooks, setAllBooks] = useState([]);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     API.getAll().then((books) => {
@@ -14,14 +15,20 @@ const App = () => {
     });
   }, []);
 
-  const changeBookShelf = (book, shelf) => {
-    API.update(book, shelf).then((books) => {
+  const changeBookShelf = async (book, shelf) => {
+    await API.update(book, shelf).then((books) => {
       if (book.shelf === "none" && shelf !== "none") {
-        const addedBooks = [...allbooks, book];
-        setAllBooks(addedBooks);
-        console.log("addedBooks", addedBooks);
+        setAllBooks([...allbooks, book]);
       }
     });
+
+    // delete book when choose none
+    if (shelf === "none") {
+      const filteredBooks = allbooks.filter(
+        (deletedBook) => deletedBook.id !== book.id
+      );
+      setAllBooks(filteredBooks);
+    }
 
     const updatedAllBooks = allbooks.map((selectedBook) => {
       if (selectedBook.id === book.id) {
@@ -31,14 +38,8 @@ const App = () => {
     });
 
     setAllBooks(updatedAllBooks);
-
-    // delete book when choose none
-    if (shelf === "none") {
-      const filterBooks = allbooks.filter(
-        (deletedBook) => deletedBook.id !== book.id
-      );
-      setAllBooks(filterBooks);
-    }
+    console.log("updatedAllBooks", updatedAllBooks);
+    setReload(!reload);
   };
 
   return (
