@@ -27,7 +27,7 @@ const BookShilf = ({ title, shelfName, books, shelfChanger }) => {
   );
 };
 
-BookShilf.prototype = {
+BookShilf.propTypes = {
   title: propTypes.string.isRequired,
   shelfName: propTypes.string.isRequired,
   books: propTypes.array.isRequired,

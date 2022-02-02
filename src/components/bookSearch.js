@@ -12,6 +12,7 @@ const BookSearch = ({ shelfChanger, books }) => {
 
   const handleChange = (e) => {
     const selectedShelf = e.target.value;
+    // setQuery(selectedShelf).debounceTime(200);
     setQuery(selectedShelf);
 
     API.search(selectedShelf)
@@ -62,11 +63,9 @@ const BookSearch = ({ shelfChanger, books }) => {
   );
 };
 
-BookSearch.prototype = {
-  query: propTypes.string.isRequired,
+BookSearch.propTypes = {
   shelfChanger: propTypes.func.isRequired,
   books: propTypes.array.isRequired,
-  setSearchResults: propTypes.array.isRequired,
 };
 
 export default BookSearch;

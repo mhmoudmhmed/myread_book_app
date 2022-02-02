@@ -25,8 +25,8 @@ const BookShelfChanger = ({ book, onChangeShelf }) => {
   );
 };
 
-BookShelfChanger.prototype = {
-  book: propTypes.array.isRequired,
+BookShelfChanger.propTypes = {
+  book: propTypes.object.isRequired,
   onChangeShelf: propTypes.func.isRequired,
 };
 

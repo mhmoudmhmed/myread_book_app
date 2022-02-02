@@ -2,9 +2,9 @@ import propTypes from "prop-types";
 import React from "react";
 import BookShelfChanger from "./bookShelfChanger";
 
-const Book = ({ book, key, shelfChanger, shelf }) => {
+const Book = ({ book, shelfChanger }) => {
   return (
-    <div className="bookshelf-books" key={key}>
+    <div className="bookshelf-books">
       <ol className="books-grid">
         <li>
           <div className="book">
@@ -19,11 +19,7 @@ const Book = ({ book, key, shelfChanger, shelf }) => {
                     : "none",
                 }}
               ></div>
-              <BookShelfChanger
-                book={book}
-                onChangeShelf={shelfChanger}
-                shelf={shelf}
-              />
+              <BookShelfChanger book={book} onChangeShelf={shelfChanger} />
             </div>
             <div className="book-title">{book.title}</div>
             {book.authors &&
@@ -39,8 +35,8 @@ const Book = ({ book, key, shelfChanger, shelf }) => {
   );
 };
 
-Book.prototype = {
-  book: propTypes.array.isRequired,
+Book.propTypes = {
+  book: propTypes.object.isRequired,
   shelfChanger: propTypes.func.isRequired,
 };
 
