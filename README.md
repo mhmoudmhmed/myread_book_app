@@ -1,11 +1,13 @@
 # Udacity Project : My Read Book App
 
-#Overview
+# Overview
+
 MyRead Book app uses udacity api to get the user books in three shelves.
 When trying to add a book you can route to /search and search for a book, the API responds with an array of books if one of these books is already in the user shelves it's status in the select is the same.
 The app allows the user to select and categorize books they have read by adding a new book to one of his three shelves .
 
-#Specification
+# Specification
+
 Each shelf corresponds to one of the following:
 -Currently Reading
 -Want to Read
@@ -14,9 +16,8 @@ Each shelf corresponds to one of the following:
 The app also lets you search for books and add them to one of the three category shelves.
 The app allows you to move books between shelves.
 
-#Table Of Content
+# npm install
 
-#npm install
 to install the necessary dependencies of the project
 
 # Getting Started with Create React App
